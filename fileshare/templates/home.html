@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SecureShare</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #f8fafc;
+            min-height: 100vh;
+        }
+
+        .hero-section{
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .hero-box{
+            background: white;
+            padding: 60px;
+            border-radius: 25px;
+            text-align: center;
+            max-width: 850px;
+            width: 100%;
+            border: 3px solid transparent;
+            background-image:
+                linear-gradient(white, white),
+                linear-gradient(135deg, #2563eb, #7c3aed);
+            background-origin: border-box;
+            background-clip: padding-box, border-box;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+
+
+        .logo{
+            width: 220px;
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 0 20px rgba(255,255,255,0.7));
+            transition: 0.3s ease;
+        }
+
+        .logo:hover{
+            transform: scale(1.05);
+        }  
+
+
+
+
+        h1{
+            font-size: 52px;
+            font-weight: bold;
+            color: #222;
+            margin-bottom: 20px;
+        }
+
+        .lead{
+            font-size: 22px;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 35px;
+        }
+
+        .btn-custom{
+            padding: 14px 35px;
+            font-size: 20px;
+            border-radius: 12px;
+            margin: 8px;
+            transition: 0.3s ease;
+        }
+
+        .btn-custom:hover{
+            transform: translateY(-4px);
+        }
+
+        .feature-badge{
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin: 5px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="hero-section">
+    <div class="hero-box">
+
+        <div class="logo-box">
+            <img src="{% static 'images/logo.png' %}" class="logo" alt="SecureShare Logo">
+        </div>
+        <h1>🔐 Welcome to SecureShare</h1>
+
+        <p class="lead">
+            A secure file sharing platform with 
+            <strong>Hybrid Encryption (AES + RSA)</strong>,
+            Integrity Verification <strong>(SHA-256)</strong>,
+            and Secure Access Control.
+        </p>
+
+        <div class="mb-4">
+            <span class="feature-badge">AES Encryption</span>
+            <span class="feature-badge">RSA Security</span>
+            <span class="feature-badge">SHA-256 Verification</span>
+            <span class="feature-badge">Access Control</span>
+        </div>
+
+        <div>
+            <a href="/login/" class="btn btn-primary btn-custom">
+                Login
+            </a>
+
+            <a href="/register/" class="btn btn-success btn-custom">
+                Register
+            </a>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,600 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SecureShare Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+
+    <style>
+        body {
+            background: #f4f7fb;
+        }
+
+        .main-card {
+            border-radius: 22px;
+            border: none;
+        }
+
+        /* Navbar Logo */
+        .nav-logo-box{
+            background: #ffffff;
+            padding: 6px 8px;
+            border-radius: 8px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+            transition: 0.3s ease;
+        }
+
+        .nav-logo{
+            height: 150px;
+            width: 180px;
+            display: block;
+        }
+
+        .navbar-brand:hover .nav-logo-box{
+            transform: scale(1.08);
+        }
+
+        /* Section Titles */
+        .section-title{
+            font-size: 28px;
+            font-weight: 800;
+            margin: 28px 0 14px;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Boxes */
+        .profile-box,
+        .upload-box,
+        .search-box,
+        .file-box,
+        .shared-box,
+        .my-share-box,
+        .log-box,
+        .section-box {
+            border-radius: 16px;
+            background: #ffffff;
+            padding: 22px;
+            border: 1px solid #e2e8f0;
+            border-left: 5px solid #0d6efd;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+        }
+
+        .section-box {
+            margin-top: 25px;
+        }
+
+        /* Welcome Box */
+        .welcome-box{
+            padding: 20px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #ffffff, #f1f5f9);
+            border: 2px solid #7790ab;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+        }
+
+        .welcome-text{
+            font-size: 32px;
+            font-weight: 800;
+            margin: 0;
+            color: #1e293b;
+        }
+
+        /* File input */
+        .custom-file-input{
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid #d0d7de;
+        }
+
+        /* Buttons */
+        .action-btn{
+            padding: 11px 22px;
+            border-radius: 10px;
+            font-weight: 600;
+        }
+
+        /* Search Box */
+        .search-box .form-control{
+            padding: 12px 16px;
+            border-radius: 12px 0 0 12px;
+        }
+
+        .search-box .btn{
+            padding: 12px 22px;
+        }
+
+        /* Dashboard Cards */
+        .dashboard-card {
+            border: none;
+            border-radius: 22px;
+            color: white !important;
+            text-decoration: none;
+            display: block;
+            padding: 28px 20px;
+            min-height: 160px;
+            transition: 0.3s ease;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 35px rgba(0,0,0,0.25);
+            color: white !important;
+        }
+
+        .dashboard-card h5 {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .dashboard-card h2 {
+            font-size: 42px;
+            font-weight: 900;
+            margin: 0;
+        }
+
+        /* Card Colors */
+        .blue-card {
+            background: linear-gradient(135deg, #0e56ca, #79c8d8);
+        }
+
+        .green-card {
+            background: linear-gradient(135deg, #08bc65, #74dcbd);
+        }
+
+        .purple-card {
+            background: linear-gradient(135deg, #733ce2, #e237c9);
+        }
+
+        .orange-card {
+            background: linear-gradient(135deg, #ea6e08, #f3ce5f);
+        }
+
+        .red-card {
+            background: linear-gradient(135deg, #e10319, #dca3a3);
+        }
+
+        /* Dark Mode */
+        .dark-mode {
+            background: #121212;
+            color: white;
+        }
+
+        .dark-mode .main-card,
+        .dark-mode .profile-box,
+        .dark-mode .upload-box,
+        .dark-mode .search-box,
+        .dark-mode .file-box,
+        .dark-mode .shared-box,
+        .dark-mode .my-share-box,
+        .dark-mode .log-box,
+        .dark-mode .section-box {
+            background: #1e1e1e;
+            color: white;
+        }
+        .file-box,
+        .shared-box,
+        .my-share-box,
+        .log-box{
+            border-radius: 18px;
+            background: #ffffff;
+            padding: 20px;
+            border: 1px solid #e5e7eb;
+            border-left: 5px solid #2563eb;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+            transition: 0.3s ease;
+            margin-bottom: 18px;
+        }
+
+        .file-box:hover,
+        .shared-box:hover,
+        .my-share-box:hover,
+        .log-box:hover{
+            transform: translateY(-3px);
+            box-shadow: 0 14px 25px rgba(0,0,0,0.08);
+        }
+
+        .file-box strong,
+        .shared-box strong,
+        .my-share-box strong{
+            font-size: 18px;
+            color: #1e293b;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .file-actions{
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 12px;
+        }
+
+        .file-details{
+            background: #f8fafc;
+            padding: 12px;
+            border-radius: 12px;
+            margin-top: 10px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .log-box{
+            border-left: 5px solid #ef4444;
+        }
+        .file-section-wrapper{
+            background: #ffffff;
+            padding: 28px;
+            border-radius: 22px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+            margin-top: 25px;
+        }
+
+        .file-section-wrapper h4{
+            font-size: 28px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #1e293b;
+        }
+        .container{
+            max-width: 800px;
+        }
+
+        .main-card{
+            max-width: 850px;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+    <div class="container">
+        <a class="navbar-brand fw-bold d-flex align-items-center" href="/">
+            <span class="nav-logo-box me-2">
+                <img src="{% static 'images/logo.png' %}" class="nav-logo">
+            </span>
+            
+        </a>
+
+        <div class="ms-auto">
+            <a href="/" class="btn btn-outline-light btn-sm me-2">🏠 Home</a>
+            <a href="/admin/" class="btn btn-outline-warning btn-sm me-2">⚙️ Admin</a>
+            <button onclick="toggleDarkMode()" class="btn btn-outline-info btn-sm me-2">🌙 Dark Mode</button>
+            <a href="/logout/" class="btn btn-danger btn-sm">🚪 Logout</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5 mb-5">
+    <div class="card shadow p-4 main-card">
+
+        <h2 class="text-center mb-3">🔐 SecureShare Dashboard</h2>
+        <div class="welcome-box text-center mb-4">
+            <h2 class="welcome-text">
+                🎉 Welcome, {{ request.user.username }}
+            </h2>
+        </div>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-success alert-dismissible fade show mt-3">
+                    ✅ {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <hr>
+
+        <h4 class="section-title">👤 User Profile</h4>
+        <div class="profile-box">
+            <p><strong>Username:</strong> {{ user_profile.username }}</p>
+            <p><strong>Email:</strong> {{ user_profile.email }}</p>
+            <p><strong>Date Joined:</strong> {{ user_profile.date_joined }}</p>
+        </div>
+
+        <h4 class="section-title">📤 Upload File</h4>
+        <div class="upload-box">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="file" name="file" class="form-control custom-file-input mb-3" required>
+                <button type="submit" class="btn btn-primary action-btn">📤 Upload Securely</button>
+            </form>
+        </div>
+
+        <h4 class="section-title">🔍 Search Files</h4>
+        <div class="search-box">
+            <form method="get">
+                <div class="input-group">
+                    <input type="text" name="search" id="fileSearch"
+                        class="form-control"
+                        placeholder="Search uploaded and shared files..."
+                        autocomplete="off">
+
+                    <button type="submit" class="btn btn-primary">Search</button>
+                    <a href="/dashboard/" class="btn btn-outline-secondary">Clear</a>
+                </div>
+            </form>
+        </div>
+
+        
+
+
+
+
+    <div class="file-section-wrapper">
+
+        <h4 class="mb-4">
+            <i class="bi bi-grid-3x3-gap-fill"></i> File Sections
+        </h4>
+
+        <div class="row g-4 mt-3 justify-content-center">
+
+            <div class="col-lg-6 col-md-6 col-sm-12 mb-3 d-flex">
+                <a class="dashboard-card blue-card text-center" data-bs-toggle="collapse" href="#uploadedSection">
+                    <h5><i class="bi bi-folder2-open"></i> Uploaded</h5>
+                    <h2>{{ total_uploaded }}</h2>
+                </a>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 mb-3 d-flex">
+                <a class="dashboard-card green-card text-center" data-bs-toggle="collapse" href="#sharedSection">
+                    <h5><i class="bi bi-box-arrow-in-down"></i> Received Files</h5>
+                    <h2>{{ total_shared }}</h2>
+                </a>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 mb-3 d-flex">
+                <a class="dashboard-card purple-card text-center" data-bs-toggle="collapse" href="#mySharedSection">
+                    <h5><i class="bi bi-send-check-fill"></i> Shared By Me</h5>
+                    <h2>{{ my_shared_files|length }}</h2>
+                </a>
+            </div>
+
+            <div class="col-lg-6 col-md-6 col-sm-12 mb-3 d-flex">
+                <a class="dashboard-card orange-card text-center" data-bs-toggle="collapse" href="#downloadSection">
+                    <h5><i class="bi bi-download"></i> Downloads</h5>
+                    <h2>{{ total_downloads }}</h2>
+                </a>
+            </div>
+
+            <div class="col-lg-6 col-md-7 col-sm-12 mb-3 d-flex">
+                <a class="dashboard-card red-card text-center" data-bs-toggle="collapse" href="#logsSection">
+                    <h5><i class="bi bi-clock-history"></i> Activity Logs</h5>
+                    <h2>{{ total_logs }}</h2>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+        <!-- Uploaded Files -->
+        <div class="collapse" id="uploadedSection">
+            <div class="section-box">
+                <h4><i class="bi bi-folder2-open"></i> Uploaded Files</h4>
+
+                {% for item in files %}
+                    <div class="file-box">
+                        <strong><i class="bi bi-file-earmark-text-fill"></i> {{ item.file.name }}</strong>
+
+                        <button class="btn btn-outline-secondary btn-sm mt-2 mb-2"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#details{{ item.id }}">
+                            <i class="bi bi-info-circle-fill"></i> Details
+                        </button>
+
+                        <div class="collapse" id="details{{ item.id }}">
+                            <div class="file-details">
+                                <i class="bi bi-filetype-txt"></i> Type: {{ item.file.name|slice:"-4:" }}<br>
+                                <i class="bi bi-clock"></i> Uploaded: {{ item.uploaded_at }}<br>
+                                <i class="bi bi-key-fill"></i> Hash: {{ item.file_hash }}<br>
+                                <i class="bi bi-shield-check"></i> Integrity Verified<br>
+                                <i class="bi bi-download"></i> Downloads: {{ item.download_count }}<br>
+                            </div>
+                        </div>
+
+                        <div class="file-actions">
+                            <a href="/preview/{{ item.id }}/" target="_blank" class="btn btn-secondary btn-sm">
+                                <i class="bi bi-eye-fill"></i> Preview
+                            </a>
+
+                            <a href="/download/{{ item.id }}/" class="btn btn-success btn-sm">
+                                <i class="bi bi-download"></i> Download
+                            </a>
+
+                            <a href="/delete/{{ item.id }}/" class="btn btn-danger btn-sm">
+                                <i class="bi bi-trash-fill"></i> Delete
+                            </a>
+                        </div>
+
+                        <form method="post" action="/share/{{ item.id }}/" class="mt-3">
+                            {% csrf_token %}
+                            <input type="email" name="email" class="form-control mb-2"
+                                placeholder="Enter email to share" required>
+
+                            <button type="submit" class="btn btn-warning btn-sm">
+                                <i class="bi bi-share-fill"></i> Share
+                            </button>
+                        </form>
+                    </div>
+                {% empty %}
+                    <p>📭 No uploaded files found.</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Shared With Me -->
+        <div class="collapse" id="sharedSection">
+            <div class="section-box">
+                <h4><i class="bi bi-inbox-fill"></i> Files Shared With Me</h4>
+
+                {% for shared in shared_files %}
+                    <div class="shared-box">
+                        <strong><i class="bi bi-file-earmark-arrow-down-fill"></i> {{ shared.file.file.name }}</strong>
+
+                        <button class="btn btn-outline-secondary btn-sm mt-2 mb-2"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#sharedDetails{{ shared.id }}">
+                            <i class="bi bi-info-circle-fill"></i> Details
+                        </button>
+
+                        <div class="collapse" id="sharedDetails{{ shared.id }}">
+                            <div class="file-details">
+                                <i class="bi bi-filetype-txt"></i> Type: {{ shared.file.file.name|slice:"-4:" }}<br>
+                                <i class="bi bi-person-fill"></i> Shared by: {{ shared.shared_by.username }}<br>
+                                <i class="bi bi-clock"></i> Shared at: {{ shared.shared_at }}<br>
+                                <i class="bi bi-download"></i> Downloads: {{ shared.file.download_count }}<br>
+                            </div>
+                        </div>
+
+                        <div class="file-actions">
+                            <a href="/preview/{{ shared.file.id }}/" target="_blank" class="btn btn-secondary btn-sm">
+                                <i class="bi bi-eye-fill"></i> Preview
+                            </a>
+
+                            <a href="/download/{{ shared.file.id }}/" class="btn btn-info btn-sm">
+                                <i class="bi bi-download"></i> Download Shared File
+                            </a>
+                        </div>
+
+                        <form method="post" action="/share/{{ shared.file.id }}/" class="mt-3">
+                            {% csrf_token %}
+                            <input type="email" name="email" class="form-control mb-2"
+                                placeholder="Enter email to share" required>
+
+                            <button type="submit" class="btn btn-warning btn-sm">
+                                <i class="bi bi-share-fill"></i> Share
+                            </button>
+                        </form>
+                    </div>
+                {% empty %}
+                    <p>📭 No files shared with you.</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Shared By Me -->
+        <div class="collapse" id="mySharedSection">
+            <div class="section-box">
+                <h4><i class="bi bi-send-check-fill"></i> Files Shared By Me</h4>
+
+                {% for shared in my_shared_files %}
+                    <div class="my-share-box">
+                        <strong><i class="bi bi-file-earmark-check-fill"></i> {{ shared.file.file.name }}</strong>
+
+                        <button class="btn btn-outline-secondary btn-sm mt-2 mb-2"
+                                type="button"
+                                data-bs-toggle="collapse"
+                                data-bs-target="#mySharedDetails{{ shared.id }}">
+                            <i class="bi bi-info-circle-fill"></i> Details
+                        </button>
+
+                        <div class="collapse" id="mySharedDetails{{ shared.id }}">
+                            <div class="file-details">
+                                <i class="bi bi-filetype-txt"></i> Type: {{ shared.file.file.name|slice:"-4:" }}<br>
+                                <i class="bi bi-people-fill"></i> Shared with: {{ shared.shared_with.username }}<br>
+                                <i class="bi bi-clock"></i> Shared at: {{ shared.shared_at }}<br>
+                            </div>
+                        </div>
+
+                        <div class="file-actions">
+                            <a href="/unshare/{{ shared.id }}/" class="btn btn-danger btn-sm">
+                                <i class="bi bi-person-x-fill"></i> Remove Access
+                            </a>
+                        </div>
+
+                        <form method="post" action="/share/{{ shared.file.id }}/" class="mt-3">
+                            {% csrf_token %}
+                            <input type="email" name="email" class="form-control mb-2"
+                                placeholder="Enter email to share" required>
+
+                            <button type="submit" class="btn btn-warning btn-sm">
+                                <i class="bi bi-share-fill"></i> Share
+                            </button>
+                        </form>
+                    </div>
+                {% empty %}
+                    <p>📭 You have not shared any files yet.</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Download History -->
+        <div class="collapse" id="downloadSection">
+            <div class="section-box">
+                <h4><i class="bi bi-download"></i> Download History</h4>
+
+                {% for log in download_logs %}
+                    <div class="log-box">
+                        <i class="bi bi-check-circle-fill"></i>
+                        Downloaded successfully - {{ log.file_name }} - {{ log.timestamp }}
+                    </div>
+                {% empty %}
+                    <p>📭 No downloads yet.</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Activity Logs -->
+        <div class="collapse" id="logsSection">
+            <div class="section-box">
+                <h4><i class="bi bi-clock-history"></i> Activity Logs</h4>
+
+                {% for log in logs %}
+                    <div class="log-box">
+                        {% if log.action == "Uploaded" %}
+                            <i class="bi bi-cloud-upload-fill"></i> Uploaded successfully - {{ log.file_name }} - {{ log.timestamp }}
+                        {% elif log.action == "Downloaded" %}
+                            <i class="bi bi-download"></i> Downloaded successfully - {{ log.file_name }} - {{ log.timestamp }}
+                        {% elif log.action == "Shared" %}
+                            <i class="bi bi-share-fill"></i> Shared successfully - {{ log.file_name }} - {{ log.timestamp }}
+                        {% elif log.action == "Deleted" %}
+                            <i class="bi bi-trash-fill"></i> Deleted successfully - {{ log.file_name }} - {{ log.timestamp }}
+                        {% else %}
+                            <i class="bi bi-bell-fill"></i> {{ log.action }} - {{ log.file_name }} - {{ log.timestamp }}
+                        {% endif %}
+                    </div>
+                {% empty %}
+                    <p>📭 No activity yet.</p>
+                {% endfor %}
+            </div>
+        </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+function toggleDarkMode() {
+    document.body.classList.toggle("dark-mode");
+
+    if (document.body.classList.contains("dark-mode")) {
+        localStorage.setItem("darkMode", "enabled");
+    } else {
+        localStorage.setItem("darkMode", "disabled");
+    }
+}
+
+if (localStorage.getItem("darkMode") === "enabled") {
+    document.body.classList.add("dark-mode");
+}
+</script>
+
+</body>
+</html>
