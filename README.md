@@ -9,6 +9,7 @@ SecureShare is a secure file sharing web application developed with Django. The 
 - File encryption for better security
 - Download file management
 - Activity logging (upload, download, delete)
+- Email notification system for secure file sharing
 - User dashboard
 - Secure environment variable management
 - Clean and user-friendly interface
@@ -118,16 +119,19 @@ python manage.py runserver
 - Download files
 - Track user activities
 - Delete files safely
+- Email notification system
+- Cloud storage integration
+  
 
 ## Future Improvements
 
 - File sharing via secure links
 - Expiry-based file access
-- Email notification system
 - Cloud storage integration
+
 
 ## Author
 
 **Arifa Akter Shorna**
-
+Institute of Information Technology
 Jahangirnagar University
