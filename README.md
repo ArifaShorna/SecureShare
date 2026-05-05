@@ -119,7 +119,8 @@ python manage.py runserver
 - Download files
 - Track user activities
 - Delete files safely
-- Email notification system
+- Share files securely
+- Receive email notifications for file sharing
 
   
 
