@@ -133,5 +133,4 @@ python manage.py runserver
 ## Author
 
 **Arifa Akter Shorna**
-Institute of Information Technology
-Jahangirnagar University
+(Institute of Information Technology, Jahangirnagar University)
