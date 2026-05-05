@@ -120,7 +120,7 @@ python manage.py runserver
 - Track user activities
 - Delete files safely
 - Email notification system
-- Cloud storage integration
+
   
 
 ## Future Improvements
